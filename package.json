@@ -1,0 +1,19 @@
+{
+  "name": "script-executor",
+  "version": "1.0.0",
+  "description": "Continuous JS-script executor",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": ">=3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "prestart": "npm install",
+    "start": "gulp",
+    "pretest": "npm install",
+    "test": "echo \"Error: no test specified\" ** exit 1"
+  },
+  "repository": "https://github.com/rfprod/script-executor.git",
+  "author": "V",
+  "license": "MIT"
+}
