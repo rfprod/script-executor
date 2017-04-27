@@ -1,11 +1,14 @@
 'use strict';
 
 const request = require('request');
+const cheerio = require('cheerio');
 
 module.exports.exec = function () {
 
-	/* hackerrank Capture The Flag 'Secret Key' solution */
-
+	/*
+	*	hackerrank Capture The Flag 'Secret Key' solution
+	*/
+	/*
 	const baseUrl = 'https://cdn.hackerrank.com/hackerrank/static/contests/capture-the-flag/secret/';
 
 	let dictionary = ['mars', 'alien'];
@@ -16,7 +19,7 @@ module.exports.exec = function () {
 		request(baseUrl + 'secret_json/' + word + '.json', function(error, response, body) {
 			// console.log('error:', error);
 			// console.log('response:', response);
-			//console.log('body:', body);
+			// console.log('body:', body);
 			if (body) {
 				news.push(JSON.parse(body).news_title);
 			}
@@ -41,6 +44,49 @@ module.exports.exec = function () {
 			isSecret(word);
 		}
 	});
+	*/
+
+	/*
+	*	hackerrank Capture The Flag 'Infinite Links' solution
+	*/
+	const baseUrl = 'https://cdn.hackerrank.com/hackerrank/static/contests/capture-the-flag/infinite/';
+	let secretPhrases = [];
+	let visited = {};
+
+	function getData(htmlFile) {
+		const title = htmlFile.split('.')[0];
+		if (visited.hasOwnProperty(title)) {
+			console.log('pass, this link was checked previously');
+		} else {
+			visited[title] = true;
+			request(baseUrl + htmlFile, function(error, response, body) {
+				// console.log('error:', error);
+				// console.log('response:', response);
+				// console.log('body:', body);
+				if (body) {
+					const $ = cheerio.load(body);
+					// console.log('page title', $('title').html());
+					const phrases = $('font');
+					for (let i = 0, max = phrases.length; i < max; i++) {
+						console.log('phrase:', phrases[i].children[0]);
+						if (phrases[i].children[0].children[0].data.indexOf('Secret Phrase') !== -1) {
+							secretPhrases.push(phrases[i].children[0].next.data);
+						}
+					}
+					const links = $('a');
+					for (let i = 0, max = links.length; i < max; i++) {
+						const anch = links[i].attribs.href;
+						console.log('anchor:', anch);
+						getData(anch);
+					}
+					secretPhrases.sort();
+					console.log(secretPhrases);
+				}
+			});
+		}
+	}
+
+	getData('qds.html');
 	
 
 	console.log('===');

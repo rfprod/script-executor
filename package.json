@@ -4,6 +4,7 @@
   "description": "Continuous JS-script executor",
   "main": "index.js",
   "dependencies": {
+    "cheerio": "^0.22.0",
     "gulp": ">=3.9.1",
     "request": "^2.81.0"
   },
