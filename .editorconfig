@@ -10,7 +10,7 @@ insert_final_newline = true
 
 # Matches multiple files with brace expansion notation
 # Default charset
-[*.{js,html,css,json}]
+[*.{js,ts,html,css,json}]
 charset = utf-8
 
 # 4 space indentation for markup and css
@@ -18,7 +18,7 @@ charset = utf-8
 indent_style = tab
 indent_size = 4
 
-# 2 space indentation for code and bowerrc
-[*.{js,json,sh,bowerrc}]
+# 2 space indentation for code and configs
+[*.{js,ts,json,sh}]
 indent_style = tab
 indent_size = 2
