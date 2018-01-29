@@ -2,6 +2,8 @@
 
 const gulp = require('gulp'),
 	runSequence = require('run-sequence'),
+	eslint = require('gulp-eslint'),
+	tslint = require('gulp-tslint'),
 	spawn = require('child_process').spawn,
 	exec = require('child_process').exec;
 let node, tsc;
@@ -60,9 +62,25 @@ gulp.task('compile-and-run-ts-script', (done) => {
 	runSequence('tsc', 'run-ts-script', done);
 });
 
+gulp.task('eslint', () => {
+	return gulp.src(['./*.js']) // uses ./.eslintignore
+		.pipe(eslint('./.eslintrc.json'))
+		.pipe(eslint.format());
+});
+
+gulp.task('tslint', () => {
+	return gulp.src(['./public/app/*.ts', './public/app/**/*.ts'])
+		.pipe(tslint({
+			formatter: 'verbose' // 'verbose' - extended info | 'prose' - brief info
+		}))
+		.pipe(tslint.report({
+			emitError: false
+		}));
+});
+
 gulp.task('watch', () => {
-	gulp.watch(['./index.js'], ['run-js-script']); // watch js script changes and execute
-	gulp.watch(['./ts/index.ts'], ['compile-and-run-ts-script']); // watch ts script changes and execute
+	gulp.watch(['./index.js'], ['eslint', 'run-js-script']); // watch js script changes and execute
+	gulp.watch(['./ts/index.ts'], ['tslint', 'compile-and-run-ts-script']); // watch ts script changes and execute
 });
 
 gulp.task('default', ['run-js-script','watch']);
