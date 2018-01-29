@@ -16,11 +16,12 @@
 	},
 	"devDependencies": {},
 	"scripts": {
-		"prestart": "npm install",
+		"prestart": "npm install && npm run clear-ts-build",
 		"start": "gulp",
 		"prestest": "npm install",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"tsc": "tsc",
-		"tsc:w": "tsc -w"
+		"tsc:w": "tsc -w",
+		"clear-ts-build": "find ./ts/ -type f -name \"*.js\" -delete && find ./ts/ -type f -name \"*.map\" -delete"
 	}
 }
