@@ -1,6 +1,7 @@
-## Continuous JS-script executor
+## Continuous JS- and TS- script executor
 
-Executes JS-script exported in [index.js](index.js) continuously on change.
+* Executes JS-script [index.js](index.js) continuously on change.
+* Compiles TS-script [index.ts](ts/index.ts) continuously on change to `ts/index.js` and executes it.
 
 ### Installation
 
