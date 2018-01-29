@@ -1,9 +1,10 @@
 'use strict';
 
-var gulp = require('gulp');
-var spawn = require('child_process').spawn;
-var exec = require('child_process').exec;
-var node;
+const gulp = require('gulp'),
+	runSequence = require('run-sequence'),
+	spawn = require('child_process').spawn,
+	exec = require('child_process').exec;
+let node, tsc;
 
 function killProcessByName (name) {
 	exec('ps -e | grep '+name, (error, stdout, stderr) => {
@@ -23,7 +24,7 @@ function killProcessByName (name) {
 	});
 }
 
-gulp.task('run-script', () => {
+gulp.task('run-js-script', () => {
 	if (node) node.kill();
 	node = spawn('node', ['-e', 'require("./index.js").exec()'], {stdio: 'inherit'});
 	node.on('close', (code) => {
@@ -33,11 +34,38 @@ gulp.task('run-script', () => {
 	});
 });
 
-gulp.task('watch', () => {
-	gulp.watch(['./index.js'], ['run-script']); // watch script changes and execute
+gulp.task('tsc', (done) => {
+	if (tsc) tsc.kill();
+	tsc = spawn('tsc', [], {stdio: 'inherit'});
+	tsc.on('close', (code) => {
+		if (code === 8) {
+			gulp.log('Error detected, waiting for changes...');
+		} else {
+			done();
+		}
+	});
 });
 
-gulp.task('default', ['run-script','watch']);
+gulp.task('run-ts-script', () => {
+	if (node) node.kill();
+	node = spawn('node', ['-e', 'new require("./ts/index.js").TestModule.TestTask()'], {stdio: 'inherit'});
+	node.on('close', (code) => {
+		if (code === 8) {
+			console.log('Error detected, waiting for changes...');
+		}
+	});
+});
+
+gulp.task('compile-and-run-ts-script', (done) => {
+	runSequence('tsc', 'run-ts-script', done);
+});
+
+gulp.task('watch', () => {
+	gulp.watch(['./index.js'], ['run-js-script']); // watch js script changes and execute
+	gulp.watch(['./ts/index.ts'], ['compile-and-run-ts-script']); // watch ts script changes and execute
+});
+
+gulp.task('default', ['run-js-script','watch']);
 
 process.on('exit', () => {
 	if (node) node.kill();

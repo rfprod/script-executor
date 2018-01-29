@@ -1,21 +1,26 @@
 {
-  "name": "script-executor",
-  "version": "1.0.0",
-  "description": "Continuous JS-script executor",
-  "main": "index.js",
-  "dependencies": {
-    "cheerio": "^0.22.0",
-    "gulp": ">=3.9.1",
-    "request": "^2.81.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "prestart": "npm install",
-    "start": "gulp",
-    "prestest": "npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "https://github.com/rfprod/script-executor.git",
-  "author": "V",
-  "license": "MIT"
+	"name": "script-executor",
+	"version": "1.0.0",
+	"author": "rfprod",
+	"license": "MIT",
+	"description": "Continuous JS-script executor",
+	"main": "index.js",
+	"repository": "https://github.com/rfprod/script-executor.git",
+	"dependencies": {
+		"@types/node": "^9.3.0",
+		"cheerio": "^1.0.0-rc.2",
+		"gulp": ">=3.9.1",
+		"request": "^2.83.0",
+		"run-sequence": "^2.2.1",
+		"typescript": "^2.6.2"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"prestart": "npm install",
+		"start": "gulp",
+		"prestest": "npm install",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"tsc": "tsc",
+		"tsc:w": "tsc -w"
+	}
 }
