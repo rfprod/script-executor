@@ -2,6 +2,21 @@
 
 const request = require('request');
 const cheerio = require('cheerio');
+const colors = require('colors');
+/*
+*	TEXT COLORS
+*
+*	black
+*	red
+*	green
+*	yellow
+*	blue
+*	magenta
+*	cyan
+*	white
+*	gray
+*	grey
+*/
 
 module.exports.exec = function () {
 
