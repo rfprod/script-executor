@@ -9,12 +9,15 @@ const gulp = require('gulp'),
 let node, tsc;
 
 function killProcessByName (name) {
-	exec('ps -e | grep '+name, (error, stdout, stderr) => {
-		if (error) throw error;
+	exec('pgrep ' + name, (error, stdout, stderr) => {
+		if (error) {
+			// throw error;
+			console.log('killProcessByName, error', error);
+		}
 		if (stderr) console.log('stderr:', stderr);
 		if (stdout) {
 			console.log('killing running processes:', stdout);
-			var runningProcessesIDs = stdout.match(/\d{4,5}/);
+			var runningProcessesIDs = stdout.match(/\d+/);
 			runningProcessesIDs.forEach((id) => {
 				exec('kill -9 ' + id, (error, stdout, stderr) => {
 					if (error) throw error;
