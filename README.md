@@ -17,4 +17,4 @@ npm start
 
 ## Licenses
 
-* [`CSE`](LICENSE.md)
+* [`CSE`](LICENSE)
