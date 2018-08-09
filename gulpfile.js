@@ -1,19 +1,18 @@
 'use strict';
 
-const gulp = require('gulp'),
-	runSequence = require('run-sequence'),
-	eslint = require('gulp-eslint'),
-	tslint = require('gulp-tslint'),
-	spawn = require('child_process').spawn,
-	exec = require('child_process').exec;
-let node, tsc;
+const gulp = require('gulp');
+const runSequence = require('run-sequence');
+const eslint = require('gulp-eslint');
+const tslint = require('gulp-tslint');
+const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
 
-function killProcessByName (name) {
+let node;
+let tsc;
+
+function killProcessByName(name) {
 	exec('pgrep ' + name, (error, stdout, stderr) => {
-		if (error) {
-			// throw error;
-			console.log('killProcessByName, error', error);
-		}
+		if (error) console.log('killProcessByName, error:', error);
 		if (stderr) console.log('stderr:', stderr);
 		if (stdout) {
 			console.log('killing running processes:', stdout);
