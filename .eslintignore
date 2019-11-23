@@ -1,2 +1,9 @@
 node_modules/**
-ts/**
+*.ico
+*.svg
+*.css
+*.scss
+*.html
+*.min.js
+*.json
+*.md
