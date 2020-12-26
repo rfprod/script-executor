@@ -6,7 +6,7 @@
 ### Installation
 
 ```
-npm install
+yarn install
 ```
 
 ### Start
