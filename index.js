@@ -115,13 +115,13 @@ module.exports.exec = function() {
     a: 1,
     b: {
       x: 2,
-      y: 3
+      y: 3,
     },
     c: {
       z: {
-        q: 4
-      }
-    }
+        q: 4,
+      },
+    },
   };
 
   Object.prototype.random = function() {

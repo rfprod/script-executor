@@ -1,23 +1,31 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "declaration": false,
+    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "lib": ["es2015", "dom"],
-    "removeComments": false,
-    "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "lib": ["ES2018", "DOM", "ESNext.AsyncIterable"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": false,
+    "noUnusedLocals": true,
+    "rootDir": ".",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
     "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["node"],
-    "allowSyntheticDefaultImports": true
+    "target": "ES6",
+    "typeRoots": ["node_modules/@types"]
   },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "preserveWhiteSpace": false
-  },
-  "include": ["ts"],
+  "include": ["./ts/*.ts"],
   "exclude": [".git", "node_modules"]
 }
