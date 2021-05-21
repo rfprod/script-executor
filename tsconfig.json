@@ -23,7 +23,7 @@
     "sourceMap": true,
     "strict": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "ES6",
+    "target": "ES5",
     "typeRoots": ["node_modules/@types"]
   },
   "include": ["./ts/*.ts"],

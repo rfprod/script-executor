@@ -143,3 +143,5 @@ export namespace TestModule {
     };
   }
 }
+
+new TestModule.TestTask();
