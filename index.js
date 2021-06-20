@@ -3,6 +3,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
 const colors = require('colors');
+
 /**
  * TEXT COLORS
  *
