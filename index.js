@@ -1,7 +1,10 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 const request = require('request');
+// eslint-disable-next-line no-unused-vars
 const cheerio = require('cheerio');
+// eslint-disable-next-line no-unused-vars
 const colors = require('colors');
 
 /**
@@ -19,7 +22,7 @@ const colors = require('colors');
  * grey
  */
 
-module.exports.exec = function() {
+module.exports.exec = function () {
   /**
    * Hackerrank Capture The Flag 'Secret Key' solution
    */
@@ -125,7 +128,8 @@ module.exports.exec = function() {
     },
   };
 
-  Object.prototype.random = function() {
+  // eslint-disable-next-line no-extend-native
+  Object.prototype.random = function () {
     console.log('Object.prototype.random', this);
     const rootKeys = Object.keys(this);
     const rootObject = this;
@@ -151,9 +155,9 @@ module.exports.exec = function() {
      * Randomize
      */
     const getRandom = (min, max) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      const minValue = Math.ceil(min);
+      const maxValue = Math.floor(max);
+      return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
     };
     const random = getRandom(0, values.length - 1);
     /**
@@ -162,7 +166,8 @@ module.exports.exec = function() {
     return values[random];
   };
 
-  Object.prototype.toRandomArray = function() {
+  // eslint-disable-next-line no-extend-native
+  Object.prototype.toRandomArray = function () {
     console.log('Object.prototype.toRandomArray', this);
     const rootKeys = Object.keys(this);
     const rootObject = this;
@@ -188,24 +193,24 @@ module.exports.exec = function() {
      * Get permutations: http://homepage.math.uiowa.edu/~goodman/22m150.dir/2007/Permutation%20Generation%20Methods.pdf
      */
     const permute = input => {
-      let length = input.length,
-        result = [input.slice()],
-        c = new Array(length).fill(0),
-        i = 1,
-        k,
-        p;
+      const length = input.length;
+      const result = [input.slice()];
+      const c = new Array(length).fill(0);
+      let i = 1;
+      let k;
+      let p;
       while (i < length) {
         if (c[i] < i) {
           k = i % 2 && c[i];
           p = input[i];
           input[i] = input[k];
           input[k] = p;
-          c[i]++;
+          c[i] += 1;
           i = 1;
           result.push(input.slice());
         } else {
           c[i] = 0;
-          i++;
+          i += 1;
         }
       }
       return result;
@@ -216,9 +221,9 @@ module.exports.exec = function() {
      * Randomize
      */
     const getRandom = (min, max) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      const minValue = Math.ceil(min);
+      const maxValue = Math.floor(max);
+      return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
     };
     const random = getRandom(0, permutations.length - 1);
     /**

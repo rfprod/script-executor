@@ -1,3 +1,6 @@
+**/*.*
+!**/*.ts
+!**/*.js
 node_modules/**
 *.ico
 *.svg

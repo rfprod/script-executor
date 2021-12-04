@@ -643,10 +643,7 @@ class TestTask {
     console.log('input1', JSON.stringify(input1));
     const result1 = this.duplicated(input1.arr, input1.keys);
     console.log('result', JSON.stringify(result1));
-    console.log(
-      'is result 1 correct, check 1',
-      this.assertEqualArrays(input1.expected, result1),
-    );
+    console.log('is result 1 correct, check 1', this.assertEqualArrays(input1.expected, result1));
     if (result1.length) {
       input1.expected.forEach((expectation: TInputArrayRecord, index: number) => {
         console.log(
@@ -660,10 +657,7 @@ class TestTask {
     console.log('input2', JSON.stringify(input2));
     const result2 = this.duplicated(input2.arr, input2.keys);
     console.log('result2', JSON.stringify(result2));
-    console.log(
-      'is result 2 correct',
-      this.assertEqualArrays(input2.expected, result2),
-    );
+    console.log('is result 2 correct', this.assertEqualArrays(input2.expected, result2));
     if (result2.length) {
       input2.expected.forEach((expectation: TInputArrayRecord, index: number) => {
         console.log(
@@ -677,10 +671,7 @@ class TestTask {
     console.log('input3', JSON.stringify(input3));
     const result3 = this.duplicated(input3.arr, input3.keys);
     console.log('result3', JSON.stringify(result3));
-    console.log(
-      'is result 3 correct',
-      this.assertEqualArrays(input3.expected, result3),
-    );
+    console.log('is result 3 correct', this.assertEqualArrays(input3.expected, result3));
     if (result3.length) {
       input3.expected.forEach((expectation: TInputArrayRecord, index: number) => {
         console.log(
@@ -698,7 +689,8 @@ class TestTask {
      * remove duplicated keys
      */
     const keys = keysInput.reduce(
-      (a: string[], b) => (!Boolean(a) ? [] : a.includes(b) ? a : a.concat(b)),
+      (a: string[] | undefined, b) =>
+        typeof a === 'undefined' ? [] : a.includes(b) ? a : a.concat(b),
       [],
     );
     // console.log('keys', JSON.stringify(keys));
@@ -717,14 +709,14 @@ class TestTask {
         const next = arr[j];
         // console.log('next', JSON.stringify(next));
         const checker: boolean[] = [];
-        keys.forEach((key: string) => {
+        keys?.forEach((key: string) => {
           if (item[key] !== next[key]) {
             checker.push(false);
           } else {
             checker.push(true);
           }
         });
-        if (checker.length === keys.length) {
+        if (checker.length === keys?.length) {
           const duplicates = !checker.filter((item1: boolean) => !item1).length;
           if (duplicates) {
             duplicatedObjects[i] = true;
@@ -742,4 +734,3 @@ class TestTask {
 }
 
 new TestTask();
-
