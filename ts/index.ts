@@ -1,4 +1,4 @@
-type TInputArrayRecord = Record<string & number, string & number>;
+type TInputArrayRecord = Record<string | number, string | number | undefined>;
 
 const inputData = [
   {
@@ -709,7 +709,7 @@ class TestTask {
         const next = arr[j];
         // console.log('next', JSON.stringify(next));
         const checker: boolean[] = [];
-        keys?.forEach((key: string) => {
+        keys?.forEach((key: string | number) => {
           if (item[key] !== next[key]) {
             checker.push(false);
           } else {
