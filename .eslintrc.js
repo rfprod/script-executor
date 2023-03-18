@@ -1,6 +1,11 @@
 const { join } = require('path');
 
 /**
+ * This RegExp patter validates the allowed camelCase patterns that should be used for the object literal property names.
+ */
+const camelCaseRegExpInput = '([a-z]+([A-Z])?[a-z]*)([$])?';
+
+/**
  * Roadmap typescript-eslint
  * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md
  *
@@ -199,6 +204,16 @@ module.exports = {
             format: ['camelCase'],
             leadingUnderscore: 'forbid',
             trailingUnderscore: 'forbid',
+          },
+          {
+            selector: 'objectLiteralProperty',
+            format: null,
+            leadingUnderscore: 'forbid',
+            trailingUnderscore: 'forbid',
+            custom: {
+              regex: `^(${camelCaseRegExpInput}|[0-9]+)$`,
+              match: true,
+            },
           },
           {
             selector: 'function',
